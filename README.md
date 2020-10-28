@@ -1,30 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js の使用感
 
-## Getting Started
+## react-app と next-app の互換性
 
-First, run the development server:
+routing まわりの書き方が異なるので多少移植の手間がかかるが、コンポーネントは基本的に使いまわせる。
+試していないが、おそらく Redux も使いまわせる。
 
-```bash
-npm run dev
-# or
-yarn dev
+## Typescript 対応
+
+すぐに出来た。
+しかし、 Next.js がデフォルトで利用している CSS Modules との相性が悪そう。
+[このあたり](https://github.com/mrmckeb/typescript-plugin-css-modules#visual-studio-code)を参考にしてみたものの、
+index.tsx で Home.module.css を読み込むところで警告が出る。
+
+## tailwind 対応
+
+create-next-app のオプションで指定できるテンプレートが用意されている。
+
+```sh
+npx create-next-app --example with-tailwindcss with-tailwindcss-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+まだ調査できていないが、VSCode の `@tailwind` が認識できないという警告が出る。
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## API
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+簡単な API を実装できる。
+がっつりとデータベースを用意して動かすような用途を想定しているかはわからない。
+外部のデータベースを見に行ってデータを加工してから React 側に渡してあげられるといった使い方が想定される。
+機密情報を含めてデプロイしてよいかなど、セキュリティ面に関しては要確認。
